@@ -25,7 +25,8 @@ function App() {
 
     
     let text = units_arr[unitNo].subunits[subUnits[subUnitNo]]
-    // text= "this is some text"
+    let guide = units_arr[unitNo].guide;
+    text= "this is some text"
     
     // let text = "this is some long text"+" this is some long text";
     // text = units.main[0].subunits.Grip;
@@ -35,8 +36,8 @@ function App() {
             {/* <UnitNav Units={Units.main} setLevel={setLevel} /> */}
                 <Header className="h-[10%]" Unit={Unit} SubUnit={SubUnit} />                     
             <main className="flex h-[90%]">
-            <LeftNav units={units_arr} />
-                <Player text = {text}  />
+            <LeftNav units={units_arr} guide={guide} />
+                <Player text = {text} guide={guide}  />
             </main>
         </div>
     )

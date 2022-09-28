@@ -5,7 +5,7 @@ export function Hero({input,handleChange,handleFocus,stats}){
 
     return (
         <div className="h-full">
-            <Textarea input={input} placeholder={"Start typing..."} handleChange={handleChange} handleFocus={handleFocus}  />
+            <Textarea className={"text-4xl"} input={input} placeholder={"Start typing..."} handleChange={handleChange} handleFocus={handleFocus}  />
             {/* <TagsGroup  tags={[`Speed: ${speed} w/m`,`Time: ${time} s`,`Strokes: ${strokes}`,`Acc.: ${acc}%`,`Err. Rate: ${errRate}%`]} /> */}
             <div className='flex flex-wrap'>
                 <div style={{minWidth:"250px"}} className="flex flex-col flex-1 h-60 bg-black p-4">
@@ -21,9 +21,9 @@ export function Hero({input,handleChange,handleFocus,stats}){
                         </svg>
 
                 </div>
-                <div style={{minWidth:"250px",flex:"1",backgroundColor:"gray",padding:"1rem"}}>
-                    <div>Acc: {time}</div>
-                    <div>Acc: {speed}</div>
+                <div style={{minWidth:"250px",flex:"1",padding:"1rem"}} className="bg-gray-400 flex flex-col text-lg">
+                    <div>time: {time}</div>
+                    <div>speed: {speed}</div>
                     <div>Acc: {acc}</div>
                     <div>strokes: {strokes}</div>
                     <div>err: {err}</div>

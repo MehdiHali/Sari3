@@ -3,14 +3,17 @@ import useStopwatch from '../utils/useStopWatch';
 import useExecuteOnes from '../utils/useExecuteOnes';
 import useComponentDidUpdate from '../utils/useComponentDidUpdate';
 import {BsFillExclamationOctagonFill as CautionIcon} from 'react-icons/bs';
-import {BiRun} from 'react-icons/bi';
-import {FaCheckCircle} from 'react-icons/fa';
+import {BiRefresh, BiRun} from 'react-icons/bi';
+import {FaCheckCircle, FaHandPaper} from 'react-icons/fa';
 import common from '../utils/util';
 import { Hero } from './Hero';
 import Progress from './Progress'
 import Style from '../styles/Player.module.css'
+import { HiHand, HiOutlineRefresh, HiRefresh } from 'react-icons/hi';
+import {TiArrowSortedDown} from 'react-icons/ti'
+import {MdOutlineDownloadDone} from 'react-icons/md'
 
-function Player({text}) {
+function Player({text,guide}) {
 
     const [state,setState] = useState({
         READY:true,
@@ -115,13 +118,25 @@ function Player({text}) {
         }
 
         return (
-            <div className={Style.noScrollbar+' h-full w-full overflow-scroll no-scrollbar'}>
+            <div className={' h-full w-full overflow-scroll noScrollbar'}>
             {/* <h1>Main.Player</h1> */}
-                 <div className='w-full flex flex-col justify-between items-center text-lg sm:text-3xl bg-gray-900 p-4 h-1/6'>
+            <div className='flex  h-1/3'>
+                <TiArrowSortedDown className='text-green-400 rotate-90 cursor-pointer hover:scale-105 my-auto ' size={100} />
+                 <div className='w-full flex flex-col justify-center items-center text-lg sm:text-3xl bg-gray-900 p-4'>
                      <p style={{color:state.ERROR?"red":"white"}}  > {text.substring(pos-25,pos-1)} <span className='bg-green-400 text-black py-2 px-1 rounded'>{text[pos-1]===" "?"__":text[pos-1]}</span> {text.substring(pos,pos+25)}</p>
-                     <Progress className={" w-3/4"} progress={(pos-1)/ text.length*100} />
+                     {/* <Progress className={" w-3/4"} progress={(pos-1)/ text.length*100} /> */}
                  </div>
-                 <div className='h-1/3 bg-green-500'>
+                <TiArrowSortedDown className='text-green-400 -rotate-90 cursor-pointer hover:scale-105 my-auto ' size={100} />
+            </div>
+                 <div className='h-1/6  flex'>
+                    {/* <div className='flex-1'>{guide}</div>  */}
+                    <div className='flex-1 p-4 text-xl  relative'><div style={{width: (pos-1)/ text.length*100+"%"}} className='bg-green-400 h-full absolute top-0 left-0'></div><div className='absolute flex space-x-4 items-center'> <span className='z-50 text-xl'> Timer </span><div className='text-6xl'>{time} s</div></div></div>
+                    <div className='text-xl bg-transparent flex-2 px-4 grid content-center'><HiRefresh size={50} className="mx-auto cursor-pointer hover:rotate-90 text-white" onClick={restart} /></div>
+                    <div className={"bg-black flex-2 p-4 flex justify-around items-center "+(state.ERROR?"text-red":state.TYPING?"text-green-400":"text-white")}>
+                        <div className='text-3xl'>{state.COMPLETED?"Completed":READY?"Ready":state.TYPING?"GO":state.ERROR?<span className='text-red-500'>Error</span>:"state"}</div>
+                        <div className='text-xl '>{state.COMPLETED?<MdOutlineDownloadDone size={50} className="mx-auto  " />:READY?<HiHand size={40} className="text-white mx-auto" />:state.TYPING?<BiRun size={50} className="text-green-400 mx-auto" />:state.ERROR?<CautionIcon size={50} className="text-red-500 mx-auto" />:"state"}</div>
+                    </div>
+                    
                  </div>
                  <div className='h-1/3 '>
         
@@ -129,43 +144,7 @@ function Player({text}) {
                 <Hero input={userInput} handleChange={update} handleFocus={Focus}  stats = {{time:time,speed:wpm,acc:accuracy,strokes:strokes,err:errors,errRate:err_rate}}/>
                  </div>
             </div>
-    
-        //     <span style={state_style}>
-        //         {}
-        //             READY?<div className={Style.state_modal}><span>READY</span> <CautionIcon size={"1.5em"} style={{background:"none"}}/></div>
-        //             :TYPING?<div className={Style.state_modal}><span>TYPING</span> <BiRun size={"1.5em"} style={{background:"none"}}/></div>
-        //             :ERROR?<div className={Style.state_modal}><span>WRONG</span> <CautionIcon size={"1.5em"} style={{background:"none"}}/></div>
-        //             :COMPLETED?<div className={Style.state_modal}><span>COMPLETED </span> <FaCheckCircle size={"1.5em"} style={{background:"none"}}/></div>
-        //             :null
-        //         }
-        //     </span>
-        //     {
-        //         COMPLETED &&
-        //                 <span style={state_style}>{wpm} WPM</span>
-        //                 }
-
-        //         <div className={Style.btns}>
-        //             <button className={Style.btn} onClick = {restart} type='text'>restart</button>
-        //         {
-        //             COMPLETED && 
-        //             <button className={Style.btn} type='text'>next</button>
-        //         }
-        //         </div>
-        //         <div className={Style.hero}>
-        //             {
-
-        //                 <textarea value={userInput} className={Style.textarea} cols="80" rows="0" onChange={update} onBlur={Focus} autoFocus ></textarea>
-        //             }
-        //             <div className={Style.brief_states}>
-        //                 <span>Timer: <div>{time} s</div></span>
-        //                 <span>Strokes: <div>{strokes}</div></span>
-        //                 <span>Errors: <div>{errors}</div></span>
-        //                 <span>Accuracy: <div>{accuracy}</div></span>
-        //                 <span>Error rate: <div>{err_rate}%</div></span>
-        //             </div>
-        //         </div>
-        // </div>
-    )
+        )
 }
 
-export default Player;
+export default Player
