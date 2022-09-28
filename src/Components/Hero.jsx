@@ -5,7 +5,7 @@ export function Hero({input,handleChange,handleFocus,stats}){
 
     return (
         <div className="h-full">
-            <Textarea input={input} placeholder={"type here ..."} handleChange={handleChange} handleFocus={handleFocus}  />
+            <Textarea input={input} placeholder={"Start typing..."} handleChange={handleChange} handleFocus={handleFocus}  />
             {/* <TagsGroup  tags={[`Speed: ${speed} w/m`,`Time: ${time} s`,`Strokes: ${strokes}`,`Acc.: ${acc}%`,`Err. Rate: ${errRate}%`]} /> */}
             <div className='flex flex-wrap'>
                 <div style={{minWidth:"250px"}} className="flex flex-col flex-1 h-60 bg-black p-4">

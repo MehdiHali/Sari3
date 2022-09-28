@@ -1,4 +1,3 @@
-import Style from '../styles/navbar.module.css'
 import { useEffect, useRef, useState } from 'react';
 import useStopwatch from '../utils/useStopWatch';
 import useExecuteOnes from '../utils/useExecuteOnes';
@@ -9,6 +8,8 @@ import {FaCheckCircle} from 'react-icons/fa';
 import common from '../utils/util';
 import { Hero } from './Hero';
 import Progress from './Progress'
+import Style from '../styles/Player.module.css'
+
 function Player({text}) {
 
     const [state,setState] = useState({
@@ -114,15 +115,15 @@ function Player({text}) {
         }
 
         return (
-            <div className='h-full w-full'>
+            <div className={Style.noScrollbar+' h-full w-full overflow-scroll no-scrollbar'}>
             {/* <h1>Main.Player</h1> */}
-                 <div className='w-full flex flex-col justify-between items-center bg-gray-900 p-4 h-1/6'>
-                     <p style={{color:state.ERROR?"red":"white"}}  > {text.substring(pos-25,pos-1)} <span style={curr_pos_style}>{text[pos-1]}</span> {text.substring(pos,pos+25)}</p>
+                 <div className='w-full flex flex-col justify-between items-center text-lg sm:text-3xl bg-gray-900 p-4 h-1/6'>
+                     <p style={{color:state.ERROR?"red":"white"}}  > {text.substring(pos-25,pos-1)} <span className='bg-green-400 text-black py-2 px-1 rounded'>{text[pos-1]===" "?"__":text[pos-1]}</span> {text.substring(pos,pos+25)}</p>
                      <Progress className={" w-3/4"} progress={(pos-1)/ text.length*100} />
                  </div>
                  <div className='h-1/3 bg-green-500'>
                  </div>
-                 <div className='h-2/3 '>
+                 <div className='h-1/3 '>
         
                 {/* <Controller  state={state} timer={`${minutes}:${secondes}`} handleRestart={restart} />*/}
                 <Hero input={userInput} handleChange={update} handleFocus={Focus}  stats = {{time:time,speed:wpm,acc:accuracy,strokes:strokes,err:errors,errRate:err_rate}}/>
