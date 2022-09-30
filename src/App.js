@@ -16,28 +16,38 @@ function getSubUnits(){
 function App() {
     const subUnits = ["Grip","Words","Control","Sentences","Test"]
     const units_arr = Units.main;
-    const [level,setLevel] = useState({unitNo:1,subUnitNo:1});
+    const [level,setLevel] = useState({unitNo:0,subUnitNo:0});
     const {unitNo,subUnitNo} = level;
     console.log("Units",units_arr[unitNo].subunits.Grip)
     let Unit = "Unit 1";
     let SubUnit = "Grip";
 
 
+    useEffect((level)=>{
+        console.log(level);
+    },[level])
+
+
     
     let text = units_arr[unitNo].subunits[subUnits[subUnitNo]]
     let guide = units_arr[unitNo].guide;
-    text= "this is some text"
+    // text= "this is some text"
     
     // let text = "this is some long text"+" this is some long text";
     // text = units.main[0].subunits.Grip;
 
+    let restart = ()=>{};
+    function gotToUnit(level){
+        console.log("Changing unit");
+        setLevel(level)
+        restart();
+    }
     return (
         <div className="flex flex-col bg-gray-800 h-screen min-h-screen ">
             {/* <UnitNav Units={Units.main} setLevel={setLevel} /> */}
                 <Header className="h-[10%]" Unit={Unit} SubUnit={SubUnit} />                     
             <main className="flex h-[90%]">
-            <LeftNav units={units_arr} guide={guide} />
-                <Player text = {text} guide={guide}  />
+                <Player currUnit = {unitNo} units={units_arr} text = {text} guide={guide}  />
             </main>
         </div>
     )

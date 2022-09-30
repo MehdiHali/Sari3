@@ -4,11 +4,11 @@ export function Hero({input,handleChange,handleFocus,stats}){
     let {time,speed,acc,strokes,err,errRate} = stats;
 
     return (
-        <div className="h-full">
-            <Textarea className={"text-4xl"} input={input} placeholder={"Start typing..."} handleChange={handleChange} handleFocus={handleFocus}  />
+        <div className="h-full flex flex-col">
+            <Textarea className={"text-2xl h-10 "} input={input} placeholder={"Start typing..."} handleChange={handleChange} handleFocus={handleFocus}  />
             {/* <TagsGroup  tags={[`Speed: ${speed} w/m`,`Time: ${time} s`,`Strokes: ${strokes}`,`Acc.: ${acc}%`,`Err. Rate: ${errRate}%`]} /> */}
-            <div className='flex flex-wrap'>
-                <div style={{minWidth:"250px"}} className="flex flex-col flex-1 h-60 bg-black p-4">
+            <div className='flex flex-wrap h-full'>
+                <div style={{minWidth:"250px"}} className="flex flex-col flex-1 h-full bg-black p-4">
                     {/* <span className='text-gray-100 text-xl'> Progress</span> */}
                     <div style={{color:"#5DBE74"}} className=" pb-4">Speed <br /> <div className='text-4xl'>+ 2.144 %</div></div>
                     <div style={{color:"red"}} className="">Accuracy <br /> <div className='text-4xl'>- 1.220 %</div></div>
